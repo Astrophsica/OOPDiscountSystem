@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DiscountSystem
 {
-    static class ConsoleIOService
+    static class IOService
     {
         public static void OutputCustomMsg(string msg)
         {
@@ -19,12 +19,6 @@ namespace DiscountSystem
         public static string GetConsoleInput()
         {
             return Console.ReadLine();
-        }
-
-        public static void OutputWelcomeMsg()
-        {
-            Console.WriteLine("Welcome to Yar890's Online Shop");
-            Console.WriteLine("Below you will find a list of items that are avaliable to purchase: ");
         }
 
         public static void OutputPricingRules (Dictionary<String, Item> pricingRules)

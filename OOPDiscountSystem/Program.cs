@@ -5,9 +5,9 @@ namespace DiscountSystem
 {
     class Program
     {
-        string userInput = null;
-        Dictionary<string, Item> pricingRules;
-        Basket mainBasket;
+        private string userInput = null;
+        private Dictionary<string, Item> pricingRules;
+        private Basket mainBasket;
 
         /// <summary>
         /// This is the first method that is ran in the program
@@ -21,8 +21,7 @@ namespace DiscountSystem
             Basket mainBasket = new Basket(pricingRules);
 
             // Outputs the list of avaliable items to purchase
-            ConsoleIOService.OutputWelcomeMsg();
-            ConsoleIOService.OutputPricingRules(pricingRules);
+            OutputWelcomeMessage();
 
             RunShopLoop();
 
@@ -31,8 +30,9 @@ namespace DiscountSystem
 
             OutputResults(results);
 
-            ConsoleIOService.GetConsoleInput();
+            IOService.GetConsoleInput();
         }
+
 
         public void RunShopLoop()
         {
@@ -40,19 +40,19 @@ namespace DiscountSystem
             while (userInput != "/")
             {
                 // Get user input and convert user input to upper caps
-                ConsoleIOService.OutputCustomMsg("Please enter the item you want to add to the basket, or type / to get total price: ");
-                userInput = ConsoleIOService.GetConsoleInput().ToUpper();
+                IOService.OutputCustomMsg("Please enter the item you want to add to the basket, or type / to get total price: ");
+                userInput = IOService.GetConsoleInput().ToUpper();
 
                 // If user input is a valid item, then added item to basket
                 if (pricingRules.ContainsKey(userInput) == true)
                 {
                     mainBasket.AddToBasket(userInput);
-                    ConsoleIOService.OutputCustomMsg(string.Concat("Item " + userInput + " has been added to the basket."));
-                    ConsoleIOService.OutputBlankLine();
+                    IOService.OutputCustomMsg(string.Concat("Item " + userInput + " has been added to the basket."));
+                    IOService.OutputBlankLine();
 
                     // Outputs current basket 
-                    ConsoleIOService.OutputCustomMsg("Current Basket: ");
-                    ConsoleIOService.OutputBasket(mainBasket);
+                    IOService.OutputCustomMsg("Current Basket: ");
+                    IOService.OutputBasket(mainBasket);
                 }
                 // If user input is /, exit while loop
                 else if (userInput == "/")
@@ -65,7 +65,7 @@ namespace DiscountSystem
                     Console.WriteLine("Invalid input.");
                 }
             }
-            ConsoleIOService.OutputBlankLine();
+            IOService.OutputBlankLine();
         }
 
 
@@ -102,13 +102,20 @@ namespace DiscountSystem
         }
 
 
+        public void OutputWelcomeMessage()
+        {
+            IOService.OutputCustomMsg("Welcome to Yar890's Online Shop");
+            IOService.OutputCustomMsg("Below you will find a list of items that are avaliable to purchase: ");
+            IOService.OutputPricingRules(pricingRules);
+        }
+
 
         public void OutputResults(Dictionary<string, double> results)
         {
             // Outputs the total price and delivery charge
-            Console.WriteLine(string.Concat("Total Price: £", results["Total"]));
-            Console.WriteLine(string.Concat("Delivery Charge: £", results["DeliveryCharge"]));
-            Console.WriteLine(string.Concat("Overall Total: £", (results["Total"] + results["DeliveryCharge"])));
+            IOService.OutputCustomMsg(string.Concat("Total Price: £", results["Total"]));
+            IOService.OutputCustomMsg(string.Concat("Delivery Charge: £", results["DeliveryCharge"]));
+            IOService.OutputCustomMsg(string.Concat("Overall Total: £", (results["Total"] + results["DeliveryCharge"])));
         }
     }
 
