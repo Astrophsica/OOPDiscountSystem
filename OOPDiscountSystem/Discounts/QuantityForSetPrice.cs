@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace YarShop
+namespace DiscountSystem
 {
     class QuantityForSetPrice : Discount
     {

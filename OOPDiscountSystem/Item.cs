@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace YarShop
+namespace DiscountSystem
 {
     class Item
     {
-        public string item;
+        public string id;
         public double price;
         public Discount discount;
 
@@ -16,9 +16,9 @@ namespace YarShop
         /// <param name="item">The item name</param>
         /// <param name="price">The normal price of the item</param>
         /// <param name="discount">The type of discount</param>
-        public Item(string item, double price, Discount discount)
+        public Item(string id, double price, Discount discount)
         {
-            this.item = item;
+            this.id = id;
             this.price = price;
             this.discount = discount;
         }
@@ -28,9 +28,9 @@ namespace YarShop
         /// </summary>
         /// <param name="item">The item name</param>
         /// <param name="price">The normal price of the item</param>
-        public Item(string item, double price)
+        public Item(string id, double price)
         {
-            this.item = item;
+            this.id = id;
             this.price = price;
             this.discount = new Discount("No Discount");
         }
